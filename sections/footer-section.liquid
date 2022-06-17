@@ -1,0 +1,43 @@
+<footer class="footer-section bg-light py-5 mt-5">
+  <div class="container">
+    <div class="row row-cols-{{ section.settings.col_num }}">
+      {% for block in section.blocks %} {% assign item = block.settings %} {% if
+      block.type == "link_list"%}
+      <div class="col">
+        <h5>{{ item.title }}</h5>
+        {% assign footer_linklist = item.menu %}
+        <ul class="list-unstyled text-small">
+          {% for link in linklists[footer_linklist].links %}
+          <li>
+            <a href="{{ link.url }}">{{ link.title | escape }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% else if block.type == "text" %}
+      <div class="col">
+        <img
+          src="{{ item.logo | img_url: 'snall' }}"
+          alt="Logo Img"
+          class="mb-5"
+        />
+        <h5>{{ item.title }}</h5>
+        <p>{{ item.description }}</p>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+  </div>
+</footer>
+
+{{ "bootstrap.min.js" | asset_url | script_tag }}
+{{ "application.js" | asset_url | script_tag }}
+
+{% schema %} { "name":"Footer", "settings":[ { "type": "range", "id": "col_num",
+"default": 3, "min": 2, "max": 4, "label":"Number of column" } ], "blocks":[ {
+"type": "link_list", "name": "Navigation", "settings":[ { "type": "text", "id":
+"title", "label":"TItle", "default": "Quick Links" }, { "type": "link_list",
+"id": "menu", "label":"Menu" } ] }, { "type": "text", "name": "Store details",
+"settings":[ { "type": "image_picker", "id":"logo", "label":"Store Logo" },{
+"type": "text", "id":"title", "label":"Heading", "default":"Store Information"
+}, { "type": "richtext", "id":"description", "label":"Text" } ] } ] } {%
+endschema %}

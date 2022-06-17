@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      {% if section.settings.image != blank %}
+
+      <img src="{{ section.settings.image | img_url: 'small' }}" alt="" />
+      {% else %}
+      <span class="h2">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% for link in linklists.main-menu.links %} {% assign child_list_handle
+        = link.title | handleize %} {% if linklists[child_list_handle].links !=
+        blank %}
+        <li class="nav-item">
+          <a href="{{ link.url }}" class="nav-link active">{{ link.title }}</a>
+        </li>
+        [{% for childlink in linklists[child_list_handle].links %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ childlink.url }}">{{
+            childlink.title | escape
+          }}</a>
+        </li>
+        {% endfor %}] {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+        {% endif %} {% endfor %}
+        <li class="nav-item">
+          <a class="nav-link" href="/cart">cart</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{%- comment -%} {% if shop.customer_accounts_enabled %} {% if customer %}
+<a href="/account">account</a>
+{{ "log out" | customer_logout_link }}
+{% else %}
+{{ "log in " | customer_login_link }}
+{{ "register" | customer_registers_link }}
+{% endif %} {% endif %} {%- endcomment -%} {% schema %} { "name":"Logo Image",
+"settings": [ { "type":"image_picker", "id": "image", "label": "Logo Image" } ]
+} {% endschema %}
