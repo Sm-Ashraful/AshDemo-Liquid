@@ -18,6 +18,7 @@ product.featured_image %}
     <div class="col-md-6 col-12">
       <h1>{{ product.title }}</h1>
       <p>{{ current_product.price | money_with_currency }}</p>
+      <p>{{ product.description }}</p>
       {% form 'product', product, class:"product-form", id:"AddToCartForm" %}
       <div class="mb-3">
         <select name="id" id="productSelect" class="form-select">

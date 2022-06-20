@@ -37,17 +37,8 @@ comment.created_at %} {% assign number_of_comments = article.comments_count %}
         {% endfor %} {% render 'pagination' %} {% endpaginate %}
 
         <div class="my-5">
-          {% form 'new_comment', article %} {% for error in form.errors %}
-          <div class="alert alert-danger">
-            {% if error == 'form' %}
-            {{ form.errors.messages[error] }}
-            {% else %}
-            {{ form.errors.translated_fields[error] }}
-            {{ form.errors.messages[error] }}
-            {% endif %}
-          </div>
-
-          {% endfor %}
+          {% form 'new_comment', article %} {% include 'form-error', form: form
+          %}
           <div class="my-5 p-2 bg-light">
             <div class="form-floating my-3">
               <input

@@ -1,1 +1,25 @@
-<!-- /templates/customers/login.liquid -->
+<div class="container py-5 my-5">
+  <div class="login-form">
+    {% form 'customer_login' %} {% include 'form-error', form: form %}
+    <h1 class="h3">Customer Log In</h1>
+    <label for="emailAddress">Email Address</label>
+    <input
+      type="email"
+      name="customer[email]"
+      class="form-control rounded-0 my-2"
+    />
+    <label for="password">Password</label>
+    <input
+      type="password"
+      name="customer[password]"
+      class="form-control rounded-0 my-2"
+    />
+
+    <input
+      type="submit"
+      value="Sign in"
+      class="btn btn-primary btn-lg w-100 rounded-0"
+    />
+    {% endform %}
+  </div>
+</div>

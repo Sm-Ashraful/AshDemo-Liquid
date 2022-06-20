@@ -1,8 +1,20 @@
 {
   "general": {
     "404": {
-      "title": "Not found",
-      "subtext_html": "The page you were looking for does not exist"
+      "title": "404",
+      "subtext_html": "Not Found"
+    },
+    "cart": {
+      "title": "cart"
+    },
+    "blog": {
+      "title": "BLog"
+    },
+    "Layout": {
+      "login_text": "Log In",
+      "logout_text": "Log Out",
+      "register_text": "Register",
+      "account_text": "Account"
     }
   }
 }

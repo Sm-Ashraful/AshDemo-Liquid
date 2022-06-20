@@ -1,0 +1,20 @@
+{
+  "general": {
+    "404": {
+      "title": "De ante",
+      "subtext_html": "ante or mag"
+    },
+    "cart": {
+      "title": "Carte"
+    },
+    "blog": {
+      "title": "Bloge"
+    },
+    "Layout": {
+      "login_text": "Compte",
+      "logout_text": "LogOut",
+      "register_text": "Creer un compte",
+      "account_text": "Accountee"
+    }
+  }
+}

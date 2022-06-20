@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
+  <div class="container">
     <a class="navbar-brand" href="#">
       {% if section.settings.image != blank %}
 
@@ -20,7 +20,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav me-auto">
         {% for link in linklists.main-menu.links %} {% assign child_list_handle
         = link.title | handleize %} {% if linklists[child_list_handle].links !=
         blank %}
@@ -42,15 +42,36 @@
           <a class="nav-link" href="/cart">cart</a>
         </li>
       </ul>
+      <ul class="navbar-nav">
+        {% if shop.customer_accounts_enabled %} {% if customer %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ routes.account_url }}">{{
+            "general.Layout.account_text" | t
+          }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ routes.account_logout_url }}">{{
+            "general.Layout.logout_text" | t
+          }}</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ routes.account_login_url }}">{{
+            "general.Layout.login_text" | t
+          }}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ routes.account_register_url }}">{{
+            "general.Layout.register_text" | t
+          }}</a>
+        </li>
+        {% endif %} {% endif %}
+      </ul>
+      <form action="/search" method="GET" role="search">
+        <input type="text" name="q" value="{{ search.terms | escape }}" />
+      </form>
     </div>
   </div>
 </nav>
-{%- comment -%} {% if shop.customer_accounts_enabled %} {% if customer %}
-<a href="/account">account</a>
-{{ "log out" | customer_logout_link }}
-{% else %}
-{{ "log in " | customer_login_link }}
-{{ "register" | customer_registers_link }}
-{% endif %} {% endif %} {%- endcomment -%} {% schema %} { "name":"Logo Image",
-"settings": [ { "type":"image_picker", "id": "image", "label": "Logo Image" } ]
-} {% endschema %}
+{% schema %} { "name":"Logo Image", "settings": [ { "type":"image_picker", "id":
+"image", "label": "Logo Image" } ] } {% endschema %}
